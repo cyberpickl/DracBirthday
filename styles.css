@@ -1,0 +1,219 @@
+/* General Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; background: #0c0c0c; color: #fff; }
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(226, 191, 191, 0.066);
+  padding: 15px 40px;
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  z-index: 100;
+  backdrop-filter: blur(6px);
+}
+.nav-left { font-size: 1.2rem; font-weight: bold; color: #0dc4f7; }
+.nav-links a {
+  margin: 0 12px;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: #b000fb; }
+
+/* Carousel */
+.story-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.slides-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  height: 100%;
+}
+.story-slide {
+  min-width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.overlay {
+  position: absolute;
+  bottom: 60px;
+  left: 60px;
+  max-width: 500px;
+  background: rgba(0, 0, 0, 0.264);
+  padding: 20px 25px;
+  border-radius: 12px;
+}
+.overlay h2 { font-size: 2rem; margin-bottom: 10px; }
+.overlay p { font-size: 1.1rem; margin-bottom: 20px; }
+.play-btn {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 8px;
+  background: #58cafb;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.play-btn:hover { background: #3a09ff; }
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.003);
+  border: none;
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 0%;
+  z-index: 5;
+  transition: background 0.3s;
+}
+.arrow:hover { background: rgba(202,88,251,0.8); }
+.arrow.left { left: 20px; }
+.arrow.right { right: 20px; }
+
+
+/* Import Playfair Display from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+.birthday-message {
+  width: 100%;
+  min-height: 60vh;       
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #272c6d);
+  color: #fff;
+  padding: 60px 80px;
+  font-family: 'Playfair Display', serif;
+}
+
+.message-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 1300px;          /* slightly smaller max-width */
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.text-content {
+  flex: 1 1 65%;
+  text-align: left;
+}
+
+.text-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;             /* smaller, unified heading */
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 8px rgba(255, 237, 237, 0.5);
+}
+
+.text-content p {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;           /* smaller paragraph */
+  max-width: 850px;
+  line-height: 1.5;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+}
+
+/* Right-side photo */
+.photo-content {
+  flex: 0 0 300px;
+  height: 300px;
+}
+
+.photo-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 3px solid #fff;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 900px) {
+  .message-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .photo-content {
+    width: 220px;
+    height: 220px;
+  }
+
+  .text-content h3 {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  .text-content p {
+    font-size: 1rem;
+    max-width: 90%;
+    text-align: center;
+  }
+}
+
+
+/* Cards Section */
+.cards-section {
+  padding: 80px 40px;
+  background: #111;
+}
+.cards-section h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #ca58fb;
+}
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  align-items: start;        /* important! don’t stretch */
+  grid-auto-rows: auto;      /* each card only as tall as content */
+}
+
+.card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  cursor: pointer;
+  background: rgba(0,0,0,0.4);
+}
+.card-header h2 { margin-bottom: 5px; color: #76b0ef; }
+.card-body {
+  display: none;
+  padding: 20px;
+}
+.card.active .card-body { display: block; }
+.section-title { font-weight: bold; margin: 10px 0 5px; color: #ca58fb; }
+.skill-bar { margin: 10px 0; }
+.bar {
+  background: #433d3d;
+  height: 8px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.fill {
+  background: #e4affb;
+  height: 100%;
+  border-radius: 5px;
+}
