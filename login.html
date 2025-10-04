@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | Enter the Legends</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    /* Background video */
+    .bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    /* Login box */
+    .login-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.6);
+      padding: 40px;
+      border-radius: 15px;
+      text-align: center;
+      color: white;
+      width: 300px;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 25px;
+      background: #ffffff;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .login-box button:hover {
+      background: #ddd;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Video -->
+  <video autoplay muted loop class="bg-video">
+    <source src="login.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Login Box -->
+  <div class="login-box" id="loginBox">
+    <h2>Enter the Party Code:</h2>
+    <input type="password" id="partyCode" placeholder="Party Code">
+    <button onclick="checkCode()">LOGIN</button>
+    <div class="error" id="errorMsg"></div>
+  </div>
+
+  <script>
+    function checkCode() {
+      const correctCode = "0610"; // ✅ your party code
+      const enteredCode = document.getElementById("partyCode").value;
+      const errorMsg = document.getElementById("errorMsg");
+
+      if (enteredCode === correctCode) {
+        // Store flag so index.html knows to play the theme
+        localStorage.setItem("playTheme", "true");
+
+        // Redirect to main site
+        window.location.href = "index.html";
+      } else {
+        errorMsg.textContent = "Wrong code, try again!";
+      }
+    }
+  </script>
+</body>
+</html>

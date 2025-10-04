@@ -4,10 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="images/cat.png">
-<link rel="shortcut icon" href="images/cat.png" type="image/png">
+  <link rel="shortcut icon" href="images/cat.png" type="image/png">
 
-
-  <title>The Legends of Dracxvil</title>
+  <title>Legends of Dracxvil</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,13 +14,12 @@
   <nav class="navbar">
     <div class="nav-left">HAPPY BIRTHDAY DRAC!</div>
     <div class="nav-links">
-     <!-- Nav bar links -->
-<a href="stories/story1/index.html">Shattered</a>
-<a href="stories/story2/index.html">Silence</a>
-<a href="stories/story3/index.html">Abyss</a>
-<a href="stories/story4/index.html">Stage</a>
-<a href="stories/story5/index.html">Dragon</a>
-
+      <!-- Nav bar links -->
+      <a href="stories/story1/index.html">Shattered</a>
+      <a href="stories/story2/index.html">Silence</a>
+      <a href="stories/story3/index.html">Abyss</a>
+      <a href="stories/story4/index.html">Stage</a>
+      <a href="stories/story5/index.html">Dragon</a>
     </div>
   </nav>
 
@@ -34,22 +32,34 @@
     <button class="arrow right">❯</button>
   </div>
 
-<!-- Birthday Message Section -->
-<section class="birthday-message">
-  <div class="message-wrapper">
-    <div class="text-content">
-      <h1>Happy Birthday, Dracu!</h1>
-      <p>
-        The truest friend there can be, a real hero (hey! you’ve saved me from getting stranded times infinity), the kindest soul to ever exist and an actual testament to the fact that good people exist. Friendship always wins and it holds your hand through thick and thin, picking you up every time you fall on your face (and chip a tooth — not from experience). Gopal (Aman) Krishna, how honored we are to be able to call you our friend and our brother, and in some cases — our son. We cherish all of our memories and hope to continue holding your hand through every arc you might face — no matter how big the bad guys and how insane their stats. Here’s a collection of stories about how this insane dude with his insane squad managed to fight bad guys and prove that with the power of friendship, you’re always invincible!
-      </p>
-    </div>
-    <!-- Optional photo placeholder for future -->
-    <div class="photo-content">
-      <img src="images/drac.jpg" alt="Birthday Photo">
-    </div>
-  </div>
-</section>
+  <!-- Birthday Message Section -->
+  <section class="birthday-message">
+    <div class="message-wrapper">
+      <div class="text-content">
+        <h1>Happy Birthday, Dracu!</h1>
+        <p>
+          The truest friend there can be, a real hero (hey! you’ve saved me from getting stranded times infinity), 
+          the kindest soul to ever exist and an actual testament to the fact that good people exist. Friendship 
+          always wins and it holds your hand through thick and thin, picking you up every time you fall on your face 
+          (and chip a tooth — not from experience). Gopal (Aman) Krishna, how honored we are to be able to call you 
+          our friend and our brother, and in some cases — our son. We cherish all of our memories and hope to 
+          continue holding your hand through every arc you might face — no matter how big the bad guys and how insane 
+          their stats. Here’s a collection of stories about how this insane dude with his insane squad managed to 
+          fight bad guys and prove that with the power of friendship, you’re always invincible!
+        </p>
+      </div>
 
+      <!-- Photo + Cake Button -->
+      <div class="photo-content">
+        <img src="images/drac.jpg" alt="Birthday Photo">
+
+        <!-- Cake Button -->
+        <button id="cake-btn">
+          <img src="images/cake.png" alt="Cake Button" />
+        </button>
+      </div>
+    </div>
+  </section>
 
   <!-- Characters Section -->
   <section class="cards-section" id="characters">
@@ -59,6 +69,34 @@
     </div>
   </section>
 
+  <!-- ================= MODAL ================= -->
+  <div id="videoModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <video id="birthdayVideo" controls>
+        <source src="images/birthday_with_caption.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+<script>
+  // Play theme song if login was successful
+  window.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("playTheme") === "true") {
+      const audio = new Audio("theme.mp3"); // 🔥 your theme file
+      audio.loop = true;
+      audio.play();
+
+      // Reset flag so it doesn’t auto-play every reload
+      localStorage.removeItem("playTheme");
+    }
+  });
+</script>
+
+
   <script src="script.js"></script>
+
+  
 </body>
 </html>

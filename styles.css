@@ -217,3 +217,75 @@ body { font-family: Arial, sans-serif; background: #0c0c0c; color: #fff; }
   height: 100%;
   border-radius: 5px;
 }
+
+/* Cake Button */
+#cake-btn {
+  background: none;
+  border: none;
+  outline: none;       /* remove browser outline */
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+#cake-btn:focus {
+  outline: none;       /* remove focus highlight */
+}
+
+#cake-btn img {
+  width: 80px; /* adjust size */
+  border: none;        /* make sure image itself has no border */
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+#cake-btn img:hover {
+  transform: scale(3.3) ;
+}
+
+
+/* Modal Styling */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 9999; 
+  top: 0; left: 0; 
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.85);
+  display: center;                /* flex ensures centering */
+  justify-content: center;      
+  align-items: center;          
+}
+
+.modal-content {
+  position: center;
+  max-width: 800px;
+  width: 90%;
+  background: #000;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #ca58fb;
+  animation: popup 0.4s ease;
+}
+
+.modal video {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;      /* put inside box */
+  right: 15px;
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close:hover {
+  color: #ca58fb;
+}
+
+@keyframes popup {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

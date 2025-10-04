@@ -26,6 +26,19 @@ const stories = [
     desc: "The squad faces Azekthor, an ancient dragon forged of iron and rage."
   }
 ];
+window.addEventListener("DOMContentLoaded", () => {
+  const music = document.getElementById("themeMusic");
+  const savedTime = localStorage.getItem("musicTime");
+
+  if (savedTime) {
+    music.currentTime = parseFloat(savedTime);
+    localStorage.removeItem("musicTime"); // only use once
+  }
+
+  music.play().catch(err => {
+    console.log("Autoplay blocked until user interacts:", err);
+  });
+});
 
 const storyCarousel = document.getElementById("story-carousel");
 
@@ -207,6 +220,118 @@ const characters = [
   
 ];
 
+// Video Modal Logic
+const modal = document.getElementById("videoModal");
+const btn = document.getElementById("cake-btn");
+const span = document.querySelector(".close");
+const video = document.getElementById("birthdayVideo");
+
+btn.addEventListener("click", () => {
+  modal.style.display = "block";
+  video.play();
+});
+
+span.addEventListener("click", () => {
+  modal.style.display = "none";
+  video.pause();
+  video.currentTime = 0;
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target == modal) {
+    modal.style.display = "none";
+    video.pause();
+    video.currentTime = 0;
+  }
+});
+
+btn.addEventListener("click", () => {
+  modal.style.display = "flex";  // show modal centered
+  video.play();
+
+  // 🎉 Trigger Confetti
+  const duration = 2 * 1000; // 2 seconds
+  const animationEnd = Date.now() + duration;
+  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 10000 };
+
+  function randomInRange(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  const interval = setInterval(function() {
+    const timeLeft = animationEnd - Date.now();
+
+    if (timeLeft <= 0) {
+      return clearInterval(interval);
+    }
+
+    const particleCount = 50 * (timeLeft / duration);
+    confetti(Object.assign({}, defaults, {
+      particleCount,
+      origin: { x: randomInRange(0.1, 0.9), y: Math.random() - 0.2 }
+    }));
+  }, 250);
+});
+
+
+// ================== BACKGROUND THEME MUSIC ==================
+const bgMusic = new Audio("theme.mp3"); // <-- put your bg music file in same folder or adjust path
+bgMusic.loop = true;
+bgMusic.volume = 0.2; // softer volume
+
+// Start music once the page is interacted with (for autoplay policy)
+document.addEventListener("DOMContentLoaded", () => {
+  const resumeMusic = () => {
+    bgMusic.play().catch(() => {});
+    document.removeEventListener("click", resumeMusic);
+  };
+  document.addEventListener("click", resumeMusic);
+});
+
+// Modify modal logic to pause/resume bg music
+btn.addEventListener("click", () => {
+  modal.style.display = "block";
+  video.play();
+  bgMusic.pause(); // pause music when modal opens
+});
+
+span.addEventListener("click", () => {
+  modal.style.display = "none";
+  video.pause();
+  video.currentTime = 0;
+  bgMusic.play(); // resume music when modal closes
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target == modal) {
+    modal.style.display = "none";
+    video.pause();
+    video.currentTime = 0;
+    bgMusic.play(); // resume music on outside click close
+  }
+});
+
+// Also resume when video ends naturally (if you want)
+video.addEventListener("ended", () => {
+  modal.style.display = "none";
+  bgMusic.play();
+});
+
+// ================== UI SOUND EFFECTS ==================
+
+// Preload swoosh sound (adjust path if inside a folder)
+const swooshSound = new Audio("swoosh1.mp3");
+swooshSound.volume = 0.8; // set volume (0.0 - 1.0)
+
+// Add swoosh to every button + navbar link
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("button, .nav-links a").forEach(el => {
+    el.addEventListener("click", () => {
+      swooshSound.currentTime = 0; // rewind instantly
+      swooshSound.play();
+    });
+  });
+});
 
 const container = document.getElementById("character-container");
 characters.forEach(c => {
